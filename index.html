@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>CaptainCurrency</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Lora:wght@500;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#eef0f2;
+      --card:#ffffff;
+      --muted:#777b80;
+      --accent:#0b8b3b;
+    }
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background:
+        radial-gradient(1200px 400px at 10% 10%, rgba(0,0,0,0.02), transparent 10%),
+        linear-gradient(#f6f7f8, #eef0f2);
+      color:#111;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+
+    .page-header {
+      max-width:1200px;
+      margin:28px auto 0;
+      padding:0 24px;
+      display:flex;
+      justify-content:flex-end;
+      align-items:center;
+    }
+    .name-block{ text-align:right; }
+    .name-block h1{
+      margin:0;
+      font-family: "Lora", serif;
+      font-weight:700;
+      font-size:1.6rem;
+      color:#222;
+    }
+    .name-block .meta{
+      margin-top:6px;
+      color:var(--muted);
+      font-size:0.95rem;
+      font-weight:300;
+    }
+
+    .stage{ max-width:1200px; margin:28px auto; padding:0 24px 48px; }
+    .card{
+      background:var(--card);
+      border-radius:14px;
+      padding:34px;
+      box-shadow: 0 20px 50px rgba(16,22,28,0.12);
+      display:grid;
+      grid-template-columns: 1fr 380px;
+      gap:28px;
+      align-items:start;
+    }
+
+    .chart-area h2{ margin:0 0 14px 0; font-size:1.1rem; color:#222; font-weight:600; }
+    .chart-wrap{ background:transparent; padding-right:8px; }
+    .widget-wrap { width:100%; background:transparent; border-radius:8px; overflow:hidden; }
+
+    .widget-wrap img{ width:100%; height:auto; display:block; border-radius:6px; }
+
+    .stats { display:flex; gap:14px; margin-top:18px; align-items:center; }
+    .stat {
+      background: #f7faf7;
+      border-radius:10px;
+      padding:14px 16px;
+      min-width:0;
+      flex:1;
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+      box-shadow: inset 0 -1px 0 rgba(0,0,0,0.02);
+    }
+    .stat .label{ color:var(--muted); font-size:0.85rem; }
+    .stat .value{ font-weight:700; font-size:1.05rem; color:#222; }
+    .stat .value.positive{ color: var(--accent); }
+    .stat .value.negative{ color: #b23f3f; }
+
+    .portrait { display:flex; justify-content:center; align-items:center; }
+    .portrait .frame {
+      width:100%;
+      max-width:320px;
+      height:440px;
+      background: linear-gradient(#fafafa,#fff);
+      border-radius:8px;
+      overflow:hidden;
+      box-shadow: 0 10px 30px rgba(10,16,20,0.08);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    .portrait img{ width:100%; height:100%; object-fit:cover; display:block; }
+
+    .contact{ margin-top:22px; text-align:center; color:var(--muted); font-size:0.95rem; }
+
+    @media (max-width:980px){
+      .card{ grid-template-columns: 1fr; padding:24px; }
+      .portrait .frame{ max-width:100%; height:360px; }
+    }
+    @media (max-width:520px){
+      .page-header{ padding:0 14px; margin-top:14px; }
+      .name-block h1{ font-size:1.25rem; }
+      .card{ padding:18px; gap:18px; }
+      .portrait .frame{ height:300px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="page-header">
+    <div class="name-block" role="banner">
+      <h1>CaptainCurrency</h1>
+      <div class="meta">Discretionary FX · Low frequency · Risk-first</div>
+    </div>
+  </header>
+
+  <main class="stage" role="main">
+    <section class="card" aria-labelledby="performance-title">
+      <!-- LEFT: chart (Darwinex widget) + stat boxes -->
+      <div class="chart-area">
+        <h2 id="performance-title">Darwinex performance</h2>
+
+        <div class="chart-wrap">
+          <!-- Darwinex widget (image link you provided) -->
+          <div class="widget-wrap">
+            <a href="https://www.darwinex.com/account/D.337501?utm_source=WidgetStrategy&utm_medium=Referral&utm_campaign=WidgetReturn&utm_content=CaptainCurrency" target="_blank" rel="noopener">
+              <img src="https://prodx-widgets.s3-eu-west-1.amazonaws.com/D.337501-widgets-account-return-account-all-bg-light-0-en.png" alt="D.337501 performance widget">
+            </a>
+          </div>
+        </div>
+
+        <div class="stats" aria-hidden="false">
+          <div class="stat">
+            <div class="label">Performance</div>
+            <div class="value positive" id="stat-performance">+34.26%</div>
+            <div class="label" style="font-size:0.82rem;color:var(--muted)">As at 12:08</div>
+          </div>
+
+          <div class="stat">
+            <div class="label">Max drawdown</div>
+            <div class="value negative" id="stat-drawdown">-5.66%</div>
+            <div class="label" style="font-size:0.82rem;color:var(--muted)">&nbsp;</div>
+          </div>
+
+          <div class="stat">
+            <div class="label">Duration</div>
+            <div class="value" id="stat-duration">1464 days</div>
+            <div class="label" style="font-size:0.82rem;color:var(--muted)">&nbsp;</div>
+          </div>
+
+          <div class="stat">
+            <div class="label">Trading</div>
+            <div class="value" id="stat-trades">76</div>
+            <div class="label" style="font-size:0.82rem;color:var(--muted)">&nbsp;</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: portrait -->
+      <aside class="portrait" role="img" aria-label="Portrait">
+        <!-- Make sure your photo file is at assets/avatar.jpg -->
+        <div class="frame">
+          <img id="avatar" src="assets/avatar.jpg" alt="Your photo">
+        </div>
+      </aside>
+    </section>
+
+    <p class="contact">You can reach me here: <a href="mailto:captaincurrency@gmail.com">captaincurrency@gmail.com</a></p>
+  </main>
+</body>
+</html>
+“Add index.html”
